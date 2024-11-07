@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('Product', {
+    const Product = sequelize.define('Product', {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -17,4 +17,10 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
     });
+
+    Product.associate = (models) => {
+        Product.belongsToMany(models.SalesOrder, { through: 'SalesOrderProducts' });
+    };
+
+    return Product;
 };

@@ -36,3 +36,13 @@ exports.updateSalesOrder = asyncHandler(async (req, res, next) => {
     }
     res.status(200).json(salesOrder);
 });
+
+exports.attachProductsToSalesOrder = requestHandler(async (req, res, next) => {
+    const { products } = req.body;
+    const { id } = req.params;
+    const result = await service.attachProductsToSalesOrder(id, products);
+    if (!result) {
+        return res.status(404).json({ error: 'Sales Order or Products not found' });
+    }
+    res.status(200).json({ message: 'Products attached successfully' });
+});
