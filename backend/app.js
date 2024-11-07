@@ -1,22 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const loadRoutes = require('./routes');
 
 const app = express();
 
 // Middleware
 app.use(bodyParser.json());
 
-// Routes
-const productRoutes = require('./routes/productRoutes');
-const salesOrderRoutes = require('./routes/salesOrderRoutes');
-
-app.use('/api/products', productRoutes);
-app.use('/api/sales-orders', salesOrderRoutes);
-
-// Test Route
-app.get('/', (req, res) => {
-    res.send('Sales Order API is running!');
-});
+// Dynamically load routes
+loadRoutes(app);
 
 // Start the server
 const PORT = 3000;
