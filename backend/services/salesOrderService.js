@@ -3,13 +3,19 @@ const { SalesOrder, SalesOrderProducts, Product } = require('../models');
 const createSalesOrder = async (salesOrderData) => {
     return SalesOrder.create(salesOrderData);
 };
-const getAllSalesOrders = async () => {
+
+const getAllSalesOrders = async (whereQuery, orderQuery, limitQuery, offsetQuery) => {
     return await SalesOrder.findAll({
+        where: whereQuery,
+        order: orderQuery,
+        limit: limitQuery,
+        offset: offsetQuery,
         include: {
             model: Product,
             through: SalesOrderProducts,
             attributes: ['id', 'name', 'price', 'description', 'stock'],
-        }
+        },
+        logging: console.log,
     });
 };
 
