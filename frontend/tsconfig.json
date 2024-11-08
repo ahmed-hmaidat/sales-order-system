@@ -23,8 +23,9 @@
     "module": "ESNext",
     "target": "ESNext",
     "noEmit": true,
-    "types": ["vite/client"],
-    "allowSyntheticDefaultImports": true,
+    "types": [
+      "vite/client"
+    ],
 
     "lib": [
       "ES2022",
