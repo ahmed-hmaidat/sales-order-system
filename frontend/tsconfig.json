@@ -15,18 +15,10 @@
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
-    "_moduleResolution": "bundler",
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "importHelpers": true,
-    "_target": "ES2022",
-    "_module": "ES2022",
-    "module": "ESNext",
-    "target": "ESNext",
-    "noEmit": true,
-    "types": [
-      "vite/client"
-    ],
-
+    "target": "ES2022",
+    "module": "ES2022",
     "lib": [
       "ES2022",
       "dom"
@@ -37,7 +29,5 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  },
-  "include": ["src/**/*.ts", "src/**/*.d.ts"],
-  "exclude": ["node_modules"]
+  }
 }
