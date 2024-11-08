@@ -6,8 +6,8 @@ services:
     container_name: redis
     ports:
       - "6379:6379"
-    extra_hosts:
-      - "host.docker.internal:host.docker.internal"
+  #    extra_hosts:
+  #      - "host.docker.internal:host.docker.internal"
 
   redis-commander:
     image: rediscommander/redis-commander:latest
@@ -15,7 +15,17 @@ services:
     ports:
       - "8081:8081"
     environment:
-      - REDIS_HOSTS=local:host.docker.internal:6379:0,local1:host.docker.internal:6379:1,local2:host.docker.internal:6379:2,local3:host.docker.internal:6379:3,local4:host.docker.internal:6379:4,local5:host.docker.internal:6379:5,local6:host.docker.internal:6379:6,local7:host.docker.internal:6379:7,local8:host.docker.internal:6379:8,local9:host.docker.internal:6379:9,local10:host.docker.internal:6379:10,local11:host.docker.internal:6379:11,local12:host.docker.internal:6379:12,local13:host.docker.internal:6379:13,local14:host.docker.internal:6379:14,local15:host.docker.internal:6379:15
+      - REDIS_HOSTS=local:redis:6379:0,local1:redis:6379:1,local2:redis:6379:2,local3:redis:6379:3,local4:redis:6379:4,local5:redis:6379:5,local6:redis:6379:6,local7:redis:6379:7,local8:redis:6379:8,local9:redis:6379:9,local10:redis:6379:10,local11:redis:6379:11,local12:redis:6379:12,local13:redis:6379:13,local14:redis:6379:14,local15:redis:6379:15
+
+  db:
+    image: postgres:alpine
+    container_name: db
+    ports:
+      - "5432:5432"
+    environment:
+        POSTGRES_USER: sales_order
+        POSTGRES_PASSWORD: 123456
+        POSTGRES_DB: sales_orders_db
 
 networks:
-  default: {}
+  default: { }

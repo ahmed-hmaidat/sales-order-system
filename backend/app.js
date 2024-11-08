@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('./middleware/cors');
 const bodyParser = require('body-parser');
 const { createBullBoard } = require('@bull-board/api');
 const { ExpressAdapter } = require('@bull-board/express');
@@ -6,6 +7,9 @@ const { BullMQAdapter } = require('@bull-board/api/bullMQAdapter');
 const loadRoutes = require('./routes');
 const salesOrderQueue = require('./queues/salesOrderQueue');
 const app = express();
+
+// Use CORS middleware
+app.use(cors);
 
 // Middleware
 app.use(bodyParser.json());
