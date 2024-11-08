@@ -1,12 +1,31 @@
 import { Component } from '@angular/core';
-import { HeroComponent } from '../hero/hero.component';
-import { ProductGridComponent } from '../../components/product-grid/product-grid.component';
+import SwiperCore, { Navigation, SwiperOptions } from 'swiper';
+
+SwiperCore.use([Navigation]);
 
 @Component({
   selector: 'app-home',
-  standalone: true,
-  imports: [HeroComponent, ProductGridComponent],
   templateUrl: './home.component.html',
 })
+
 export class HomeComponent {
+  config: SwiperOptions = {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    navigation: {
+      nextEl: '.swiper-arrow-next',
+      prevEl: '.swiper-arrow-prev',
+    }
+  };
+
+  heroImagePath = "assets/images/hero.png"
+  bannerImagePath = "assets/images/banner-image.png"
+
+  onSwiper(swiper: any) {
+    console.log(swiper);
+  }
+
+  onSlideChange() {
+    console.log('slide change');
+  }
 }

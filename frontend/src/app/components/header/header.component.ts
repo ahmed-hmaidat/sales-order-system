@@ -1,25 +1,25 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import { FormsModule } from '@angular/forms';
-import { NgIf } from '@angular/common';
+import { MenuService } from '../../services/menu.service';
+import { MenuItem } from '../../models/menu-item.model';
+import { SearchService } from "../../services/search.service";
 
 @Component({
   selector: 'app-header',
-  standalone: true,
-  imports: [RouterLink, FontAwesomeModule, FormsModule, NgIf],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  templateUrl: './header.component.html'
 })
 export class HeaderComponent {
-  faShoppingCart = faShoppingCart;
-  faSearch = faSearch;
-  searchQuery = '';
-  cartItemCount = 0;
+  menuItems: MenuItem[] = [];
 
-  onSearch() {
-    console.log('Searching for:', this.searchQuery);
-    // Implement search functionality
+  logoPath: string = 'assets/images/logo.png';
+
+  constructor(private searchService: SearchService, private menuService: MenuService) {
+  }
+
+  toggleSearchPopup() {
+    this.searchService.toggleSearchPopup();
+  }
+
+  ngOnInit() {
+    this.menuItems = this.menuService.getMenuItems();
   }
 }
