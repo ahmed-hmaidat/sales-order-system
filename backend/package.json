@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon -L app.js",
-    "worker": "nodemon -L node worker.js",
+    "dev": "nodemon app.js",
+    "worker": "nodemon node worker.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "db:migrate": "sequelize db:migrate",
     "db:undo": "sequelize db:migrate:undo",

@@ -1,11 +1,17 @@
-const { Product } = require('../models');
+const { Product, SalesOrder, SalesOrderProducts } = require('../models');
 
 const createProduct = async (productData) => {
-    return await Product.create(productData);
+    return Product.create(productData);
 };
 
-const getAllProducts = async () => {
-    return await Product.findAll();
+const getAllProducts = async (whereQuery, orderQuery, limitQuery, offsetQuery) => {
+    return await Product.findAll({
+        where: whereQuery,
+        order: orderQuery,
+        limit: limitQuery,
+        offset: offsetQuery,
+        logging: console.log,
+    });
 };
 
 const getProductById = async (id) => {

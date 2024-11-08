@@ -1,9 +1,17 @@
 const asyncHandler = require("express-async-handler");
 const service = require("../services/productService");
 const requestHandler = require('../middleware/requestHandler');
+const searchBuilder = require("sequelize-search-query-builder");
+const { SalesOrder } = require("../models");
 
 exports.getProducts = requestHandler(async (req, res, next) => {
-    const result = await service.getAllProducts();
+    const search = new searchBuilder(SalesOrder, req.query);
+    const whereQuery = search.getWhereQuery();
+    const orderQuery = search.getOrderQuery();
+    const limitQuery = search.getLimitQuery();
+    const offsetQuery = search.getOffsetQuery();
+
+    const result = await service.getAllProducts(whereQuery, orderQuery, limitQuery, offsetQuery);
     res.status(200).json(result);
 });
 
