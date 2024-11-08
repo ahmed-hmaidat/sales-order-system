@@ -1,0 +1,26 @@
+<header class="header">
+  <div class="container header-content">
+    <nav class="nav-links">
+      <a routerLink="/">Home</a>
+      <a routerLink="/products">Products</a>
+      <a routerLink="/about">About</a>
+      <a routerLink="/contact">Contact</a>
+    </nav>
+    <div class="search-cart">
+      <div class="search-container">
+        <input
+          type="text"
+          class="search-bar"
+          placeholder="Search products..."
+          [(ngModel)]="searchQuery"
+          (keyup.enter)="onSearch()"
+        >
+        <fa-icon [icon]="faSearch" (click)="onSearch()"></fa-icon>
+      </div>
+      <div class="cart-icon">
+        <fa-icon [icon]="faShoppingCart"></fa-icon>
+        <span class="cart-count" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
+      </div>
+    </div>
+  </div>
+</header>
