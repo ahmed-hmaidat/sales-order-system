@@ -1,0 +1,21 @@
+name: hmaidat-sales-stack
+
+services:
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    extra_hosts:
+      - "host.docker.internal:host.docker.internal"
+
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: redis-commander
+    ports:
+      - "8081:8081"
+    environment:
+      - REDIS_HOSTS=local:host.docker.internal:6379:0,local1:host.docker.internal:6379:1,local2:host.docker.internal:6379:2,local3:host.docker.internal:6379:3,local4:host.docker.internal:6379:4,local5:host.docker.internal:6379:5,local6:host.docker.internal:6379:6,local7:host.docker.internal:6379:7,local8:host.docker.internal:6379:8,local9:host.docker.internal:6379:9,local10:host.docker.internal:6379:10,local11:host.docker.internal:6379:11,local12:host.docker.internal:6379:12,local13:host.docker.internal:6379:13,local14:host.docker.internal:6379:14,local15:host.docker.internal:6379:15
+
+networks:
+  default: {}

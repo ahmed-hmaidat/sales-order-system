@@ -3,6 +3,7 @@ const service = require("../services/salesOrderService");
 const requestHandler = require('../middleware/requestHandler');
 const searchBuilder = require('sequelize-search-query-builder');
 const { SalesOrder } = require('../models');
+const salesOrderQueue = require('../queues/salesOrderQueue');
 
 exports.getSalesOrders = requestHandler(async (req, res, next) => {
     const search = new searchBuilder(SalesOrder, req.query);
@@ -11,8 +12,9 @@ exports.getSalesOrders = requestHandler(async (req, res, next) => {
     const limitQuery = search.getLimitQuery();
     const offsetQuery = search.getOffsetQuery();
 
-    const result = await service.getAllSalesOrders(whereQuery, orderQuery, limitQuery, offsetQuery);
-    res.status(200).json(result);
+    const order = await service.getAllSalesOrders(whereQuery, orderQuery, limitQuery, offsetQuery);
+
+    res.status(200).json(order);
 });
 
 exports.getSalesOrder = asyncHandler(async (req, res, next) => {
@@ -25,6 +27,10 @@ exports.getSalesOrder = asyncHandler(async (req, res, next) => {
 
 exports.createSalesOrder = requestHandler(async (req, res, next) => {
     const salesOrder = await service.createSalesOrder(req.body);
+
+    // Add the sales order to the queue for processing
+    await salesOrderQueue.add('createSalesOrder', { salesOrder }, { attempts: 3 });
+
     res.status(200).json(salesOrder);
 });
 
