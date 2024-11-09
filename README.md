@@ -185,9 +185,9 @@ After starting the application with Docker Compose, use the following URLs to ac
 
 3. The backend will run at http://localhost:3000.
 
-## **Testing Third-Party APIs**
+## **Third-Party Integration**
 
-To test third-party API integrations, refer to the following workflow diagram:
+The backend service will push order events to the third-party API.
 
 ![Pipedream Requests](third-party.png)
 
