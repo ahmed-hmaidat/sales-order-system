@@ -22,6 +22,9 @@ FROM nginx:alpine
 # Copy the build output from the previous stage to the Nginx HTML directory
 COPY --from=build /app/dist/frontend /usr/share/nginx/html
 
+# Copy custom Nginx configuration
+COPY nginx.conf /etc/nginx/nginx.conf
+
 # Expose the port the app runs on
 EXPOSE 80
 
