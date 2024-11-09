@@ -18,7 +18,7 @@ const worker = new Worker(
             console.log(`Notifying external API...`);
             try {
                 const response = await axios.post(
-                    'https://eoqef8de0zxqnpm.m.pipedream.net',
+                    process.env.EXTERNAL_API_URL,
                     salesOrder,
                     {
                         headers: {

@@ -1,6 +1,8 @@
 # **Sales Order System**
 
-A full-stack application for managing sales orders and products, built using **Node.js**, **Angular**, and **PostgreSQL**, and orchestrated with **Docker Compose**.
+A full-stack application for managing sales orders and products, built using
+**Node.js**, **Angular**, and **PostgreSQL**, and orchestrated with
+**Docker Compose**.
 
 ---
 
@@ -48,7 +50,8 @@ Before starting, ensure you have the following installed:
 
 - **Docker**: [Install Docker](https://docs.docker.com/get-docker/)
 - **Docker Compose**: [Install Docker Compose](https://docs.docker.com/compose/install/)
-- **Node.js**: Version `v22.5.0` or higher
+- **Node.js**: Version `v22.5.0` for backend, and `v16.20.2` for frontend
+- **Angular CLI**: Version `14.2.13`
 - **npm**: Comes bundled with Node.js
 
 ---
@@ -65,7 +68,7 @@ cd sales-order-system
 ### Build and Run the Application with Docker Compose
 
 ```bash
-docker-compose up --build
+docker-compose up --build -d
 ```
 This will start all the services required for the application:
 
@@ -100,6 +103,7 @@ The application uses the following environment variables, defined in the `.env` 
 - **`POSTGRES_DB`**: PostgreSQL database name
 - **`REDIS_HOST`**: Redis server hostname
 - **`REDIS_PORT`**: Redis server port
+- **`EXTERNAL_API_URL`**: External API URL for third-party requests
 
 Make sure to customize the `.env` file to match your setup.
 

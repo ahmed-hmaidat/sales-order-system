@@ -15,10 +15,12 @@ services:
       DB_NAME: sales_orders_db
       DB_HOST: db
       DB_DIALECT: postgres
+      EXTERNAL_API_URL: https://eoqef8de0zxqnpm.m.pipedream.net
     ports:
       - "3000:3000"
-    volumes:
-      - ./backend:/app
+#    For development with docker
+#    volumes:
+#      - ./backend:/app
     depends_on:
       - db
       - redis
@@ -36,8 +38,10 @@ services:
       DB_NAME: sales_orders_db
       DB_HOST: db
       DB_DIALECT: postgres
-    volumes:
-      - ./backend:/app
+      EXTERNAL_API_URL: https://eoqef8de0zxqnpm.m.pipedream.net
+#    For development with docker
+#    volumes:
+#      - ./backend:/app
     depends_on:
       - db
       - redis
